@@ -1572,7 +1572,7 @@ class Mission
 			lock="UNLOCKED";
 			skill=0.60000002;
 			text="ammo_2";
-			init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this;this addMagazineCargoGlobal [""rb_MobilePhone"", 1]; action_2 = this addAction [""Get SUV instead of Phone"", { if (side player == east) then {veh_2 = ""C_SUV_01_F"" createVehicle getMarkerPos ""pickup_2"";clearMagazineCargoGlobal ammo_2 ;ammo_2 removeAction action_2}}];ammo_2 addEventHandler [""ContainerOpened"",  {if !(side player == east ) then {null = [] spawn {waituntil {!(isNull findDisplay 602)}; closeDialog 0; hint ""Access denied"";};};}];";
+			init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this;this addMagazineCargoGlobal [""rb_MobilePhone"", 1]; action_2 = this addAction [""Get SUV instead of Phone"", { if (side player == east) then {veh_2 = ""C_SUV_01_F"" createVehicle getMarkerPos ""pickup_2"";ammo_2 spawn fnc_removeOneSmartphone;ammo_2 removeAction action_2}}];ammo_2 addEventHandler [""ContainerOpened"",  {if !(side player == east ) then {null = [] spawn {waituntil {!(isNull findDisplay 602)}; closeDialog 0; hint ""Access denied"";};};}];";
 		};
 		class Item4
 		{
@@ -1583,7 +1583,7 @@ class Mission
 			vehicle="ACE_Box_Ammo";
 			skill=0.60000002;
 			text="ammo_3";
-			init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this;this addMagazineCargoGlobal [""rb_MobilePhone"", 1]; action_3 = this addAction [""Get SUV instead of Phone"", {if (side player == west) then { veh_3 = ""C_SUV_01_F"" createVehicle getMarkerPos ""pickup_3"";clearMagazineCargoGlobal ammo_3 ;ammo_3 removeAction action_3}; }];ammo_3 addEventHandler [""ContainerOpened"",  {if !(side player == west ) then {null = [] spawn {waituntil {!(isNull findDisplay 602)}; closeDialog 0; hint ""Access denied"";};};}];";
+			init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this;this addMagazineCargoGlobal [""rb_MobilePhone"", 1]; action_3 = this addAction [""Get SUV instead of Phone"", {if (side player == west) then { veh_3 = ""C_SUV_01_F"" createVehicle getMarkerPos ""pickup_3"";ammo_3 spawn  fnc_removeOneSmartphone;ammo_3 removeAction action_3}; }];ammo_3 addEventHandler [""ContainerOpened"",  {if !(side player == west ) then {null = [] spawn {waituntil {!(isNull findDisplay 602)}; closeDialog 0; hint ""Access denied"";};};}];";
 		};
 	};
 	class Markers
