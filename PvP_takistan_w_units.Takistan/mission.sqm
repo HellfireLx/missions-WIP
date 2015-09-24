@@ -979,6 +979,7 @@ class Mission
 					id=32;
 					side="WEST";
 					vehicle="B_Soldier_TL_F";
+					player="PLAY CDG";
 					leader=1;
 					rank="SERGEANT";
 					skill=0.60000002;
@@ -1548,7 +1549,7 @@ class Mission
 			side="EMPTY";
 			vehicle="rhsusf_m113d_usarmy";
 			skill=0.60000002;
-			init="this addMagazineCargo [""rb_MobilePhone"", 1]; ";
+			init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this;this addMagazineCargoGlobal [""rb_MobilePhone"", 1]; ";
 		};
 		class Item2
 		{
@@ -1559,7 +1560,7 @@ class Mission
 			vehicle="ACE_Box_Ammo";
 			skill=0.60000002;
 			text="ammo_1";
-			init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this;this addMagazineCargoGlobal [""rb_MobilePhone"", 1]; action_1 = this addAction [""Get Pickup instead of Phone"", { veh_1 = ""C_Offroad_01_F"" createVehicle getMarkerPos ""pickup_1"";clearMagazineCargoGlobal ammo_1 ;ammo_1 removeAction action_1}];";
+			init="clearMagazineCargoGlobal this; clearWeaponCargoGlobal this;this addMagazineCargoGlobal [""rb_MobilePhone"", 1]; action_1 = this addAction [""Get Pickup instead of Phone"", { veh_1 = ""C_Offroad_01_F"" createVehicle getMarkerPos ""pickup_1"";ammo_1 spawn  fnc_removeOneSmartphone;ammo_1 removeAction action_1}];";
 		};
 		class Item3
 		{
@@ -1677,7 +1678,7 @@ class Mission
 			activationType="NOT PRESENT";
 			interruptable=1;
 			age="UNKNOWN";
-			expActiv="phones = 0;   {      if (alive _x && side _x == east) then   {    phones = phones + ( { _x == ""rb_MobilePhone""}  count (VestItems _x + Uniformitems _x + backpackitems _x) ) ;    };  } foreach allUnits;hintc format[""BluFor has been eliminated. OpFor has %1 phone(s)"", phones];";
+			expActiv="bluPhones = 0; opPhones = 0;   opPhones = ({_x == ""rb_MobilePhone""} count magazineCargo ammo_2) ;   bluPhones = ({_x == ""rb_MobilePhone""} count magazineCargo ammo_3) ;   hint format[""BluFor has been eliminated !  BluFor has %1 phone(s). OpFor has %2 phone(s)"", bluPhones, opPhones]; ";
 			class Effects
 			{
 			};
@@ -1691,7 +1692,7 @@ class Mission
 			activationType="NOT PRESENT";
 			interruptable=1;
 			age="UNKNOWN";
-			expActiv="phones = 0;   {      if (alive _x && side _x == west) then   {    phones = phones + ( { _x == ""rb_MobilePhone""}  count (VestItems _x + Uniformitems _x + backpackitems _x) ) ;    };  } foreach allUnits;hintc format[""OpFor has been eliminated. BluFor has %1 phone(s)"", phones];";
+			expActiv="bluPhones = 0; opPhones = 0;   opPhones = ({_x == ""rb_MobilePhone""} count magazineCargo ammo_2) ;   bluPhones = ({_x == ""rb_MobilePhone""} count magazineCargo ammo_3) ;   hint format[""OpFor has been eliminated ! OpFor has %1 phone(s). BluFor has %2 phone(s)"", opPhones, bluPhones]; ";
 			class Effects
 			{
 			};
@@ -1706,7 +1707,7 @@ class Mission
 			timeoutMax=3600;
 			age="UNKNOWN";
 			expCond="true";
-			expActiv="bluPhones = 0;   opPhones = 0;     {        if (side _x == east) then     {    opPhones = opPhones + ( { _x == ""rb_MobilePhone""}  count (VestItems _x + Uniformitems _x + backpackitems _x) ) ;  };    if (side _x == west) then     {    bluPhones = bluPhones + ( { _x == ""rb_MobilePhone""}  count (VestItems _x + Uniformitems _x + backpackitems _x) ) ;     };    } foreach allUnits;  hint format[""BluFor has %1 phone(s). OpFor has %2 phone(s)"", bluPhones, opPhones];";
+			expActiv="bluPhones = 0; opPhones = 0;   opPhones = ({_x == ""rb_MobilePhone""} count magazineCargo ammo_2) ;   bluPhones = ({_x == ""rb_MobilePhone""} count magazineCargo ammo_3) ;   hint format[""Times up ! BluFor has %1 phone(s). OpFor has %2 phone(s)"", bluPhones, opPhones];     ";
 			class Effects
 			{
 			};
